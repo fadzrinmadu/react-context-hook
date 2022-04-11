@@ -19,7 +19,7 @@ interface ThemeContextProviderProps {
   children: JSX.Element | JSX.Element[],
 }
 
-const initialValue = {
+const initialValue: ThemeContextInterface = {
   isLightTheme: true,
   light: {
     syntax: '#555',
