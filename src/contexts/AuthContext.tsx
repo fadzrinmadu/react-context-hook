@@ -9,17 +9,23 @@ interface AuthContextProviderProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const initialValue: AuthContextInterface = {
-  isAuthenticated: false,
-  toggleAuth: () => { },
-};
+interface AuthType {
+  isAuthenticated: boolean;
+}
 
-export const AuthContext = createContext<AuthContextInterface>(initialValue);
+const initialAuthValue: AuthType = {
+  isAuthenticated: false,
+}
+
+export const AuthContext = createContext<AuthContextInterface>({
+  isAuthenticated: initialAuthValue.isAuthenticated,
+  toggleAuth: () => { },
+});
 
 export default function AuthContextProvider(props: AuthContextProviderProps) {
   const { children } = props;
 
-  const [state, setState] = useState(initialValue);
+  const [state, setState] = useState<AuthType>(initialAuthValue);
 
   const toggleAuth = () => {
     setState({
